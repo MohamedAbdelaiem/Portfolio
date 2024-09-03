@@ -3,6 +3,7 @@ const nav_logo =document.querySelector('header .logo');
 const nav_menu =document.querySelector('header ul');
 const items=document.querySelector('.Items');
 const header=document.querySelector('header');
+const links=document.querySelectorAll("header ul li a");
 
 nav_logo.addEventListener('click',()=>{
     nav_menu.classList.toggle('list_items');
@@ -28,11 +29,19 @@ document.addEventListener('click',function(e){
     }
 });
 
+nav_menu.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){
+        links.forEach(link =>  {
+            console.log(link);
+            return link.
+            style.color="hsl(0, 0%, 100%)";
+        });
+        e.target.setAttribute("style","color:hsl(162, 100%, 40%)");
+    }
+})
 
 
 
-
-/*=============== REMOVE MENU MOBILE ===============*/
 
 
 /*=============== ADD BLUR TO HEADER ===============*/
