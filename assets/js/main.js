@@ -46,8 +46,54 @@ nav_menu.addEventListener('click',function(e){
 
 /*=============== ADD BLUR TO HEADER ===============*/
 
-
 /*=============== EMAIL JS ===============*/
+const contactForm = document.getElementById('contact-form');
+const contactMessage = document.getElementById('contact-message')
+
+    emailjs.init({
+      publicKey: "KZNJXS_gE3veFCGEz",
+    });
+const sendEmail = (e) => {
+    e.preventDefault()
+
+    // serviceID - templateID - #form - puplicKey
+    emailjs
+      .sendForm(
+        "service_8a1yx8c",
+        "template_k3ix7bn",
+        "contact-form",
+        "KZNJXS_gE3veFCGEz"
+      )
+      .then(
+        () => {
+          // show message
+              contactMessage.textContent = "Message sent successfully ✅";
+              
+              setTimeout(() => {
+                  contactMessage.textContent=""
+              }, 5000)
+              contactForm.reset();
+
+            },
+            (error) => {
+                //show error message
+                contactMessage.textContent =
+                "Message not sent (service error) ❌";
+                contactForm.reset();
+        }
+      );
+
+    // emailjs.sendForm("service_8a1yx8c", "contact_form", this).then(
+    //   () => {
+    //     console.log("SUCCESS!");
+    //   },
+    //   (error) => {
+    //     console.log("FAILED...", error);
+    //   }
+    // );
+}
+
+contactForm.addEventListener("submit", sendEmail)
 
 
 /*=============== SHOW SCROLL UP ===============*/ 
