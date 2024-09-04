@@ -1,8 +1,10 @@
+'use strict';
+
 /*=============== SHOW MENU ===============*/
 const nav_logo =document.querySelector('header .logo');
 const nav_menu =document.querySelector('header ul');
 const items=document.querySelector('.Items');
-const header=document.querySelector('header');
+const headers=document.querySelector('.header');
 const links=document.querySelectorAll("header ul li a");
 
 nav_logo.addEventListener('click',()=>{
@@ -45,52 +47,41 @@ nav_menu.addEventListener('click',function(e){
 
 
 /*=============== ADD BLUR TO HEADER ===============*/
+const headerHeight = headers.getBoundingClientRect().height;
+console.log(headers);
+window.addEventListener('scroll', () => {
+    if(window.scrollY > headerHeight){
+        console.log('sss');
+        headers.classList.add('blur_header');
+    }else{
+        headers.classList.remove('blur_header');
+    }
+});
+
 
 /*=============== EMAIL JS ===============*/
 const contactForm = document.getElementById('contact-form');
-const contactMessage = document.getElementById('contact-message')
+const contactMessage = document.getElementById('contact-message');
 
-    emailjs.init({
-      publicKey: "KZNJXS_gE3veFCGEz",
-    });
-const sendEmail = (e) => {
-    e.preventDefault()
+function sendEmail(e){
+    e.preventDefault();
+    emailjs.sendForm('service_igwdy3e', 'template_zuyqupk', '#contact-form','F98WFZaHaq27c8AMB')
+    .then(()=>{
+        contactMessage.textContent = 'Your message has been sent successfully✅';
+        contactMessage.style.color = 'green';
 
-    // serviceID - templateID - #form - puplicKey
-    emailjs
-      .sendForm(
-        "service_8a1yx8c",
-        "template_k3ix7bn",
-        "contact-form",
-        "KZNJXS_gE3veFCGEz"
-      )
-      .then(
-        () => {
-          // show message
-              contactMessage.textContent = "Message sent successfully ✅";
-              
-              setTimeout(() => {
-                  contactMessage.textContent=""
-              }, 5000)
-              contactForm.reset();
+        setTimeout(()=>{
+            contactMessage.textContent = '';
+        },5000);
 
-            },
-            (error) => {
-                //show error message
-                contactMessage.textContent =
-                "Message not sent (service error) ❌";
-                contactForm.reset();
-        }
-      );
+        contactForm.reset();
 
-    // emailjs.sendForm("service_8a1yx8c", "contact_form", this).then(
-    //   () => {
-    //     console.log("SUCCESS!");
-    //   },
-    //   (error) => {
-    //     console.log("FAILED...", error);
-    //   }
-    // );
+        
+    },()=>{
+        contactMessage.textContent = 'Your message has not been sent successfully❌';
+        contactMessage.style.color = 'red';
+    })
+    
 }
 
 contactForm.addEventListener("submit", sendEmail)
