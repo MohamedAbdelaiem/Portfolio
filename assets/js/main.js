@@ -56,8 +56,8 @@ window.addEventListener('scroll', () => {
     }else{
         headers.classList.remove('blur_header');
     }
+    nav_menu.classList.remove('blur_header')
 });
-
 
 /*=============== EMAIL JS ===============*/
 const contactForm = document.getElementById('contact-form');

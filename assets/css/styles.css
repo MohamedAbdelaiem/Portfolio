@@ -243,7 +243,6 @@ header .container .logo {
   position: absolute;
   background-color:hsla(0,0%,10%,.3);
   width: 200px;
-  backdrop-filter:blur(24px);
   right: 0;
   z-index: 100;
   padding: 1rem;
@@ -252,6 +251,7 @@ header .container .logo {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  
 
 }
 
@@ -405,9 +405,6 @@ header .container .logo {
     grid-template-columns: repeat(2,1fr); 
     align-items: center; 
   }
-  .home , .about , .services {
-    height: 100vh;
-  }
   
 }
 
@@ -510,9 +507,6 @@ header .container .logo {
     grid-template-columns: repeat(2,1fr); 
     align-items: center; 
     gap: 2rem;
-  }
-  .home{
-    height: 100vh;
   }
   .about .aboutContent{
     max-width: 600px;
